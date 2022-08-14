@@ -1,4 +1,4 @@
-// REACT - STYLING (SASS, BOOTSTRAP INTRO)
+// REACT - STYLING
 
 // "buton.module.css"
 
