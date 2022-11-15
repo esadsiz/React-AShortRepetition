@@ -1,7 +1,75 @@
+###########################################################################
+/* burasi App.js bölgesi */
+
+import Footer from "./components/Footer";
+import NavBar from "./components/NavBar";
+import Home from "./pages/Home";
+import Instructors from "./pages/Instructors";
+import NotFound from "./pages/NotFound";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+function App() {
+  return (
+    <div className="container">
+      <BrowserRouter>
+        <NavBar />
+        {/*her sayfada görünmesi gereken componentleri Routes'in disina aliriz.
+          "yukaridan Nav gelsin, asagidan Footer gelsin. ortaya da "Routes" icindeki sayfalardan biri." */}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="instructors" element={<Instructors />} />
+          <Route path="*" element={<NotFound />} />
+          {/* "*" bunlarin disindaki herhangi bir sayfa demek */}
+        </Routes>
+        <Footer />
+      </BrowserRouter>
+    </div>
+  );
+}
+
+export default App;
+###########################################################################
+#
+#
+#
+#
+#
+###########################################################################
+/* burasi NavBar.jsx bölgesi */
+
+import { Link, NavLink } from "react-router-dom";
+// Nav'da React Router'in Link componenti yerine a kullanirsak, sayfalar yavas gelir.
+// bastan bir render etme sözkonusu olur. o yüzden Link componentini kullaniyoruz.
+
+const NavBar = () => {
+  return (
+    <div>
+      <Link to="/">HomeLinki</Link>
+    {/* NavLink, stillendirme icin kullanilir. style ile "eger isActive true ise rengi kirmizi yap."*/}
+      <NavLink
+        style={({ isActive }) => (return { color: isActive && "red", isActive && margin: '10px })}
+        to="/instructors"
+        className="nav-link active"
+        aria-current="page">
+          Home
+      </NavLink>
+    </div>
+  );
+};
+
+export default Nav;
+###########################################################################
+#
+#
+#
+#
+#
+###########################################################################
+
 // PAGES
 
 import Instructors from "./pages/Instructors";
-// import NotFound from './pages/NotFound';
+import NotFound from './pages/NotFound';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import InstructorDetail from "./pages/InstructorDetail";
 import { Navigate } from "react-router-dom";
